@@ -1,0 +1,32 @@
+{
+  "name": "perl-regex",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=4.5.0"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "description": "Perl regex engine for node.js",
+  "main": "./lib/regex.js",
+  "homepage": "https://github.com/Aludirk/node-perl-regex",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aludirk/node-perl-regex"
+  },
+  "scripts": {
+    "test": "nodeunit test/test.js"
+  },
+  "keywords": [
+    "perl",
+    "regex"
+  ],
+  "author": "Aludirk Wong <aludirkwong@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "sprintf-js": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.10.2"
+  }
+}
