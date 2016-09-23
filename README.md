@@ -9,7 +9,7 @@ Binding Perl to enrich the regular expression from [node.js](https://nodejs.org/
 # Installation
 
 ```bash
-npm install node-perl-regex
+npm install perl-regex
 ```
 
 # Examples
