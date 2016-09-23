@@ -17,7 +17,7 @@ npm install perl-regex
 * Match using regular expression in string:
 
 ```javascript
-let pregex = require('node-perl-regex');
+let pregex = require('perl-regex');
 
 console.log(pregex.match('EMAIL: test@example.com',
                          '^email: [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$',
@@ -30,7 +30,7 @@ console.log(pregex.match('EMAIL: test@example.com',
 * Match using `RegExp` object:
 
 ```javascript
-let pregex = require('node-perl-regex');
+let pregex = require('perl-regex');
 
 console.log(pregex.match('EMAIL: test@example.com',
                          /^email: [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i));
@@ -42,7 +42,7 @@ console.log(pregex.match('EMAIL: test@example.com',
 * Exec regular expression in string:
 
 ```javascript
-let pregex = require('node-perl-regex');
+let pregex = require('perl-regex');
 
 console.log(pregex.exec('Great responsibility comes with great power',
                         '(?<=great )\\w+',
@@ -55,7 +55,7 @@ console.log(pregex.exec('Great responsibility comes with great power',
 * Exec `RegExp` object:
 
 ```javascript
-let pregex = require('node-perl-regex');
+let pregex = require('perl-regex');
 
 console.log(pregex.exec('https://127.0.0.1:1314/index.html',
                         /(https?):\/\/(\d+\.\d+\.\d+\.\d+):(\d+)\/([a-zA-z.]+)/));
