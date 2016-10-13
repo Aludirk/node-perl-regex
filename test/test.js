@@ -3,7 +3,7 @@
 let pregex = require('../lib/regex.js');
 
 exports['pregex:match'] = function(test) {
-	test.expect(12);
+	test.expect(13);
 
 	// match 1
 	test.equal(pregex.match('Hello World !!!', /\w+ \w+ !{3}/), true);
@@ -17,6 +17,12 @@ exports['pregex:match'] = function(test) {
 	test.equal(pregex.match('test@example.com', '\\w+ \\w+ !{3}'), false);
 	test.equal(pregex.match('test@example.com', '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'), true);
 
+	// match 3
+	let multiLines=`Multi
+		foo
+		bar`;
+	test.equal(pregex.match(multiLines, '[a-zA-Z]*?\\n(.*)', 'i'), true);
+
 	// options
 	test.equal(pregex.match('HellohelloHELLO', /(?:hello){3}/i), true);
 	test.equal(pregex.match('HellohelloHELLO', '(?:hello){3}', 'i'), true);
@@ -29,7 +35,7 @@ exports['pregex:match'] = function(test) {
 };
 
 exports['pregex:exec'] = function(test) {
-	test.expect(17);
+	test.expect(18);
 
 	// exec 1
 	test.deepEqual(pregex.exec('Hello World !!!', /\d+/), null);
@@ -46,6 +52,12 @@ exports['pregex:exec'] = function(test) {
 	test.deepEqual(pregex.exec('My email is testexample.com ^_^', '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'), null);
 	test.deepEqual(pregex.exec('My email is test@example.com ^_^', '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'), ['test@example.com']);
 	test.deepEqual(pregex.exec('My email is test@example.com ^_^', '([a-zA-Z0-9_.+-]+)@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'), ['test@example.com', 'test']);
+
+	// match 3
+	let multiLines=`Multi
+		foo
+		bar`;
+	test.deepEqual(pregex.exec(multiLines, '[a-zA-Z]*?\\n(.*)', 'i'), ["Multi\n\t\tfoo\n\t\tbar", "\t\tfoo\n\t\tbar"]);
 
 	// options 1
 	test.deepEqual(pregex.exec('Hello World !!!', /\w+/g), ['World', 'Hello', 'World']);
