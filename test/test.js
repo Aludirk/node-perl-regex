@@ -21,8 +21,8 @@ exports['pregex:match'] = function(test) {
 	let multiLines=`Multi
 		foo
 		bar`;
-	test.equal(pregex.match(multiLines, /[a-zA-Z]*?\n(.*)/, 'i'), true);
-	test.equal(pregex.match(multiLines, '[a-zA-Z]*?\\n(.*)', 'i'), true);
+	test.equal(pregex.match(multiLines, /[a-z]*?\n(.*)/i), true);
+	test.equal(pregex.match(multiLines, '[a-z]*?\\n(.*)', 'i'), true);
 
 	// match 4
 	test.equal(pregex.match('192.168.0.1', /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/), true);
@@ -68,8 +68,8 @@ exports['pregex:exec'] = function(test) {
 	let multiLines=`Multi
 		foo
 		bar`;
-	test.deepEqual(pregex.exec(multiLines, /[a-zA-Z]*?\n(.*)/, 'i'), ["Multi\n\t\tfoo\n\t\tbar", "\t\tfoo\n\t\tbar"]);
-	test.deepEqual(pregex.exec(multiLines, '[a-zA-Z]*?\\n(.*)', 'i'), ["Multi\n\t\tfoo\n\t\tbar", "\t\tfoo\n\t\tbar"]);
+	test.deepEqual(pregex.exec(multiLines, /[a-z]*?\n(.*)/i), ["Multi\n\t\tfoo\n\t\tbar", "\t\tfoo\n\t\tbar"]);
+	test.deepEqual(pregex.exec(multiLines, '[a-z]*?\\n(.*)', 'i'), ["Multi\n\t\tfoo\n\t\tbar", "\t\tfoo\n\t\tbar"]);
 
 	// exec 4
 	test.deepEqual(pregex.exec('192.168.0.1', /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/), ['192.168.0.1', '192', '168', '0', '1']);
