@@ -3,7 +3,7 @@
 let pregex = require('../lib/regex.js');
 
 exports['pregex:match'] = function(test) {
-	test.expect(22);
+	test.expect(23);
 
 	// match 1
 	test.equal(pregex.match('Hello World !!!', /\w+ \w+ !{3}/), true);
@@ -34,6 +34,9 @@ exports['pregex:match'] = function(test) {
 	test.equal(pregex.match('256.0.0.1', '^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'), false);
 	test.equal(pregex.match('255.0.0.y', '^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'), false);
 
+	// match 5
+	test.equal(pregex.match('My name is <$test>.', '^.+<(.+)>.+'), true);
+
 	// options
 	test.equal(pregex.match('HellohelloHELLO', /(?:hello){3}/i), true);
 	test.equal(pregex.match('HellohelloHELLO', '(?:hello){3}', 'i'), true);
@@ -46,7 +49,7 @@ exports['pregex:match'] = function(test) {
 };
 
 exports['pregex:exec'] = function(test) {
-	test.expect(27);
+	test.expect(28);
 
 	// exec 1
 	test.deepEqual(pregex.exec('Hello World !!!', /\d+/), null);
@@ -81,6 +84,9 @@ exports['pregex:exec'] = function(test) {
 	test.deepEqual(pregex.exec('256.0.0.1', '^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'), null);
 	test.deepEqual(pregex.exec('255.0.0.y', '^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'), null);
 
+	// exec 5
+	test.deepEqual(pregex.exec('My name is <$test>.', '^.+<(.+)>.+'), ['My name is <$test>.', '$test']);
+	
 	// options 1
 	test.deepEqual(pregex.exec('Hello World !!!', /\w+/g), ['World', 'Hello', 'World']);
 	test.deepEqual(pregex.exec('Hello World !!!', '\\w+', 'g'), ['World', 'Hello', 'World']);
